@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Shows</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.js"
+        integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container shadow">
+        <div class="row text-center m-3">
+            <div class="col">
+                <h1>All Shows</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table table-hover table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Network</th>
+                            <th>Release Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for show in shows %}
+                        <tr>
+                            <th class="align-middle" style="width: 5%"> {{ show.id }} </th>
+                            <td class="align-middle" style="width: 25%"> {{ show.title }}</td>
+                            <td class="align-middle" style="width: 25%"> {{ show.network }}</td>
+                            <td class="align-middle" style="width: 25%"> {{ show.release_date }}</td>
+                            <td>
+                                <a href="/shows/{{ show.id }}" class="btn btn-primary">Show</a>
+                                <a href="/shows/{{ show.id }}/edit" class="edit-custom btn btn-secondary">Edit</a>
+                                {% csrf_token %}
+                                <a href="/shows/{{ show.id }}/destroy" class="delete-custom text-white btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col text-center">
+            <a href="/shows/home" class="btn btn-outline-primary m-4">Add a New Show</a>
+        </div>
+    </div>
+</body>
+
+</html>

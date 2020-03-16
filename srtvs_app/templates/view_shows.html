@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Shows</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.js"
+        integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
+        
+</head>
+
+<body class="text-center">
+    <div class="container shadow">
+        <div class="row m-3">
+            <div class="col">
+                <h1 class="">TV Show {{ show.id }}</h1>
+            </div>
+        </div>
+        <div class=" mt-5">
+            <form action="/shows/{{ show.id }}" method="POST">
+                {% csrf_token %}
+                <p><label><span class="font-weight-bold">Title:</span><span class="font-italic">
+                            {{ show.title }}</span></label></p>
+                <p><label><span class="font-weight-bold">Network:</span><span class="font-italic">
+                            {{ show.network }}</span></label></p>
+                <p><label><span class="font-weight-bold">Release Date:</span><span class="font-italic">
+                            {{ show.release_date }} </span></label></p>
+                <p><label><span class="font-weight-bold">Description:</span><span class="font-italic">
+                            {{ show.description }}</span></label></p>
+                <p class="mt-5"><label><span class="tv-show-font">Last Updated:</span><span class="tv-show-title">
+                            {{ show.updated_at }}</span></p>
+                <div class=" form-group mt-4">
+                    <a href="/shows/{{ show.id }}/edit" class="btn btn-primary " role="button">Edit</a>
+                    <a href="/shows/{{ show.id }}/destroy"
+                        class="btn btn-outline-danger">Delete</a>
+                </div>
+                <div>
+                    <a href="/shows" class="btn btn-outline-primary m-4">Go Back to All Shows</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

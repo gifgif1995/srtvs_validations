@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.js"
+        integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container shadow">
+        <div class="row mt-3">
+            <div class="col">
+                <h1 class="text-center">Add a New Show</h1>
+            </div>
+        </div>
+        <div class="row mt-5 justify-content-center">
+            <div class="col-5 ">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <form action="/shows/create" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <label for="title" class="title">Title</label>
+                        <input type="text" class="form-control" name="title" value="{{ show.title }}">
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-4 p-0 mr-5">
+                            <label for="network" class="title">Network</label>
+                            <input type="text" class="form-control" name="network" value="{{ show.network }}">
+                        </div>
+                        <div class="col p-0 ml-5">
+                            <label for="release_date" class="title">Release Date</label>
+                            <input type="date" class="form-control" name="release_date"
+                                value="{{ show.release_date|date:'Y-m-d' }}">
+                        </div>
+                    </div>
+                    <div class="row form-group mt-4">
+                        <label for="description" class="title">Description</label>
+                        <textarea class="form-control resize" cols="30" rows="5" name="description"
+                            value="{{ show.description }}"></textarea>
+                    </div>
+                    <div class="row justify-content-center ">
+                        <button type="submit" class="btn btn-primary m-3">Create</button>
+                        <a href="/shows" class="btn btn-outline-primary m-3">Go to All Shows</a>
+                    </div>
+
+            </div>
+            </form>
+        </div>
+    </div>
+
+    </div>
+</body>
+
+</html>
